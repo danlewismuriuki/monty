@@ -1,17 +1,20 @@
-#include "monty.h"
+#include "main.h"
+
 /**
-* free_stack - frees a doubly linked list
-* @head: head of the stack
-*/
+ * free_stack - func frees doubly linked list
+ * @head: head of the stack
+ */
+
 void free_stack(stack_t *head)
 {
-        stack_t *aux;
+	stack_t *temp;
 
-        aux = head;
-        while (head)
-        {
-                aux = head->next;
-                free(head);
-                head = aux;
-        }
+	temp = head;
+
+	while (head)
+	{
+		temp = head->next;
+		free(head);
+		head = temp;
+	}
 }

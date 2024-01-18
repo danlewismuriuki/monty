@@ -1,4 +1,4 @@
-#include "monty.h"
+#include "main.h"
 /**
   *f_rotl- rotates the stack to the top
   *@head: stack head
@@ -24,7 +24,7 @@ void f_rotl(stack_t **head,  __attribute__((unused)) unsigned int counter)
         (*head)->prev = tmp;
         (*head) = aux;
 }
-#include "monty.h"
+#include "main.h"
 /**
   *f_rotr- rotates the stack to the bottom
   *@head: stack head

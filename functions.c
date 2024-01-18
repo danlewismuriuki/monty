@@ -1,4 +1,4 @@
-#include "monty.h"
+#include "main.h"
 /**
  * f_push - add node to the stack
  * @head: stack head
@@ -35,7 +35,7 @@ void f_push(stack_t **head, unsigned int counter)
         else
                 addqueue(head, n);
 }
-#include "monty.h"
+#include "main.h"
 /**
  * f_pall - prints the stack
  * @head: stack head
@@ -56,7 +56,7 @@ void f_pall(stack_t **head, unsigned int counter)
                 h = h->next;
         }
 }
-#include "monty.h"
+#include "main.h"
 /**
  * f_swap - adds the top two elements of the stack.
  * @head: stack head
@@ -87,7 +87,7 @@ void f_swap(stack_t **head, unsigned int counter)
         h->n = h->next->n;
         h->next->n = aux;
 }
-#include "monty.h"
+#include "main.h"
 /**
  * f_pop - prints the top
  * @head: stack head
@@ -110,7 +110,7 @@ void f_pop(stack_t **head, unsigned int counter)
         *head = h->next;
         free(h);
 }
-#include "monty.h"
+#include "main.h"
 /**
  * f_pint - prints the top
  * @head: stack head

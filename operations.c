@@ -1,4 +1,4 @@
-#include "monty.h"
+#include "main.h"
 /**
  * f_add - adds the top two elements of the stack.
  * @head: stack head
@@ -30,7 +30,7 @@ void f_add(stack_t **head, unsigned int counter)
         *head = h->next;
         free(h);
 }
-#include "monty.h"
+#include "main.h"
 /**
   *f_sub- sustration
   *@head: stack head
@@ -59,7 +59,7 @@ void f_sub(stack_t **head, unsigned int counter)
         *head = aux->next;
         free(aux);
 }
-#include "monty.h"
+#include "main.h"
 /**
  * f_mul - multiplies the top two elements of the stack.
  * @head: stack head
@@ -124,7 +124,7 @@ void f_div(stack_t **head, unsigned int counter)
         *head = h->next;
         free(h);
 }
-#include "monty.h"
+#include "main.h"
 /**
  * f_mod - computes the rest of the division of the second
  * top element of the stack by the top element of the stack
