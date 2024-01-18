@@ -1,102 +1,167 @@
 #include "monty.h"
-
 /**
- * pall - Print all values on the stack
- * @stack: pointer to head of stack
- * @line_num: file's line number
- * Return: Void
- */
-
-void pall(stack_t **stack, unsigned int line_num)
+ * f_add - adds the top two elements of the stack.
+ * @head: stack head
+ * @counter: line_number
+ * Return: no return
+*/
+void f_add(stack_t **head, unsigned int counter)
 {
-	stack_t *h = *stack;
-	(void)line_num;
+        stack_t *h;
+        int len = 0, aux;
 
-	while (h)
-	{
-		printf("%d\n", h->n);
-		h = h->next;
-	}
+        h = *head;
+        while (h)
+        {
+                h = h->next;
+                len++;
+        }
+        if (len < 2)
+        {
+                fprintf(stderr, "L%d: can't add, stack too short\n", counter);
+                fclose(bus.file);
+                free(bus.content);
+                free_stack(*head);
+                exit(EXIT_FAILURE);
+        }
+        h = *head;
+        aux = h->n + h->next->n;
+        h->next->n = aux;
+        *head = h->next;
+        free(h);
 }
-
+#include "monty.h"
 /**
- * push - Pushes an element to the stack
- * @stack: pointer to head of stack
- * @line_num: file's line number
- * @n: variable
- * Return: address of new element
+  *f_sub- sustration
+  *@head: stack head
+  *@counter: line_number
+  *Return: no return
  */
-
-void push(stack_t **stack, unsigned int line_num, int n)
+void f_sub(stack_t **head, unsigned int counter)
 {
-	stack_t *new, *h = *stack;
+        stack_t *aux;
+        int sus, nodes;
 
-	if (stack == NULL)
-	{
-		fprintf(stderr, "L%d: usage: push integer", line_num);
-		exit(EXIT_FAILURE);
-	}
-	new = malloc(sizeof(stack_t));
-	if (new == NULL)
-		exit(EXIT_FAILURE);
-	new->prev = NULL;
-	new->n = n;
-	new->next = *stack;
-	if (*stack)
-		h->prev = new;
-	*stack = new;
+        aux = *head;
+        for (nodes = 0; aux != NULL; nodes++)
+                aux = aux->next;
+        if (nodes < 2)
+        {
+                fprintf(stderr, "L%d: can't sub, stack too short\n", counter);
+                fclose(bus.file);
+                free(bus.content);
+                free_stack(*head);
+                exit(EXIT_FAILURE);
+        }
+        aux = *head;
+        sus = aux->next->n - aux->n;
+        aux->next->n = sus;
+        *head = aux->next;
+        free(aux);
 }
-
+#include "monty.h"
 /**
- * pop - Removes the top element of the stack
- * @stack: pointer to head of stack
- * @line_num: file's line number
- * Return: Void
- */
-
-void pop(stack_t **stack, unsigned int line_num)
+ * f_mul - multiplies the top two elements of the stack.
+ * @head: stack head
+ * @counter: line_number
+ * Return: no return
+*/
+void f_mul(stack_t **head, unsigned int counter)
 {
-	stack_t *h = *stack;
+        stack_t *h;
+        int len = 0, aux;
 
-	if (!(*stack))
-	{
-		fprintf(stderr, "L%u: can't pop an empty stack\n", line_num);
-		exit(EXIT_FAILURE);
-	}
-
-
-	if (h)
-	{
-		*stack = (h)->next;
-		free(h);
-	}
+        h = *head;
+        while (h)
+        {
+                h = h->next;
+                len++;
+        }
+        if (len < 2)
+        {
+                fprintf(stderr, "L%d: can't mul, stack too short\n", counter);
+                fclose(bus.file);
+                free(bus.content);
+                free_stack(*head);
+                exit(EXIT_FAILURE);
+        }
+        h = *head;
+        aux = h->next->n * h->n;
+        h->next->n = aux;
+        *head = h->next;
+        free(h);
 }
-
-/**
- * swap - Swaps the top two elements of the stack
- * @stack: pointer to head of stack
- * @line_num: file's line number
- * Return: Void
- */
-void swap(stack_t **stack, unsigned int line_num)
+void f_div(stack_t **head, unsigned int counter)
 {
-	stack_t *h = *stack, *ptr;
+        stack_t *h;
+        int len = 0, aux;
 
-	if ((*stack) == NULL || (*stack)->next == NULL)
-	{
-		fprintf(stderr, "L%u: can't swap, stack too short\n", line_num);
-		exit(EXIT_FAILURE);
-	}
+        h = *head;
+        while (h)
+        {
+                h = h->next;
+                len++;
+        }
+        if (len < 2)
+        {
+                fprintf(stderr, "L%d: can't div, stack too short\n", counter);
+                fclose(bus.file);
+                free(bus.content);
+                free_stack(*head);
+                exit(EXIT_FAILURE);
+        }
+        h = *head;
+        if (h->n == 0)
+        {
+                fprintf(stderr, "L%d: division by zero\n", counter);
+                fclose(bus.file);
+                free(bus.content);
+                free_stack(*head);
+                exit(EXIT_FAILURE);
+        }
+        aux = h->next->n / h->n;
+        h->next->n = aux;
+        *head = h->next;
+        free(h);
+}
+#include "monty.h"
+/**
+ * f_mod - computes the rest of the division of the second
+ * top element of the stack by the top element of the stack
+ * @head: stack head
+ * @counter: line_number
+ * Return: no return
+*/
+void f_mod(stack_t **head, unsigned int counter)
+{
+        stack_t *h;
+        int len = 0, aux;
 
-	if (h && h->next)
-	{
-		ptr = h->next;
-		if (ptr->next)
-			ptr->next->prev = h;
-		h->next = ptr->next;
-		ptr->prev = NULL;
-		ptr->next = h;
-		h->prev = ptr;
-		*stack = ptr;
-	}
+        h = *head;
+        while (h)
+        {
+                h = h->next;
+                len++;
+        }
+        if (len < 2)
+        {
+                fprintf(stderr, "L%d: can't mod, stack too short\n", counter);
+                fclose(bus.file);
+                free(bus.content);
+                free_stack(*head);
+                exit(EXIT_FAILURE);
+        }
+        h = *head;
+        if (h->n == 0)
+        {
+                fprintf(stderr, "L%d: division by zero\n", counter);
+                fclose(bus.file);
+                free(bus.content);
+                free_stack(*head);
+                exit(EXIT_FAILURE);
+        }
+        aux = h->next->n % h->n;
+        h->next->n = aux;
+        *head = h->next;
+        free(h);
 }
