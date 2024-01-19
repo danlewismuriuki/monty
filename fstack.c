@@ -6,9 +6,9 @@
  * Return: no return
  */
 
-void f_stack(stack_t **head, unsigned int count)
+void f_stack(stack_t **head, unsigned int counter)
 {
 	(void)head;
-	(void)count;
+	(void)counter;
 	bus.lifi = 0;
 }
